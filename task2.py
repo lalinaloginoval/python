@@ -12,27 +12,30 @@ from abc import ABC, abstractmethod
 
 
 class Clothes(ABC):
-    def __init__(self, parameter):
-        self.parameter = parameter
-
     @abstractmethod
     def calc_tissue_consumption(self):
         pass
 
 
 class Coat(Clothes):
+    def __init__(self, size):
+        self.size = size
+
     # Преобразуем метод в свойство
     @property
     def calc_tissue_consumption(self):
-        return round(self.parameter / 6.5 + 0.5, 2)
+        return round(self.size / 6.5 + 0.5, 2)
 
 
 class Suit(Clothes):
+    def __init__(self, height):
+        self.height = height
+
     def calc_tissue_consumption(self):
-        return round(2 * self.parameter + 0.3, 2)
+        return round(2 * self.height + 0.3, 2)
 
 
 coat = Coat(42)
-print(f'Расход ткани на пальто размера {coat.parameter} составит {coat.calc_tissue_consumption} м.')
+print(f'Расход ткани на пальто размера {coat.size} составит {coat.calc_tissue_consumption} м.')
 suit = Suit(170)
-print(f'Расход ткани на костюм на рост {suit.parameter} составит {suit.calc_tissue_consumption()}')
+print(f'Расход ткани на костюм на рост {suit.height} составит {suit.calc_tissue_consumption()}')
